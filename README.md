@@ -81,6 +81,24 @@ http://127.0.0.1:18100/health
 
 http://127.0.0.1:8000/docs
 
+### Batch 3 — Kubernetes Platform
+
+- Isolated kind Kubernetes cluster
+- Calico CNI and enforced NetworkPolicies
+- Development, staging, and platform namespaces
+- Helm-based FORGE API and APEX MLOps deployments
+- RBAC, Pod Security Admission, resource quotas and limits
+- Non-root containers, probes, and container hardening
+- Verified cross-namespace allowed and blocked traffic
+- APEX authenticated prediction API with health checks
+
+**Technical documentation**
+- [Kubernetes Platform Guide](docs/KUBERNETES.md)
+- [Platform Architecture](docs/ARCHITECTURE.md)
+- [Validation Results — 18 passed, 0 failed](docs/VALIDATION-RESULTS.md)
+- [Portfolio and CV Summary](docs/PORTFOLIO-SUMMARY.md)
+- [GitHub Actions CI/CD Run](https://github.com/touc996-svg/forge-devops-platform/actions/runs/42629601193)
+
 ## Demonstration Workloads
 
 1. APEX MLOps

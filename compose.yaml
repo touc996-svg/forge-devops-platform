@@ -1,0 +1,28 @@
+services:
+  forge-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: forge-platform-api:local
+
+    ports:
+      - "127.0.0.1:18100:8000"
+
+    init: true
+    restart: unless-stopped
+
+    read_only: true
+
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+
+    cap_drop:
+      - ALL
+
+    security_opt:
+      - no-new-privileges:true
+
+    pids_limit: 100
+    mem_limit: 384m
+    cpus: 0.50

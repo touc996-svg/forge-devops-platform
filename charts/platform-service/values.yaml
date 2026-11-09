@@ -1,0 +1,68 @@
+fullnameOverride: forge-api
+
+replicaCount: 1
+
+image:
+  repository: forge-platform-api
+  tag: batch3
+  pullPolicy: IfNotPresent
+
+containerPort: 8000
+
+service:
+  type: ClusterIP
+  port: 8000
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+  HOME: /tmp
+  TMPDIR: /tmp
+
+secretEnv: {}
+
+probes:
+  startup:
+    path: /health
+    periodSeconds: 5
+    failureThreshold: 24
+  liveness:
+    path: /health
+    periodSeconds: 10
+    failureThreshold: 3
+  readiness:
+    path: /ready
+    periodSeconds: 5
+    failureThreshold: 3
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+  fsGroupChangePolicy: OnRootMismatch
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  capabilities:
+    drop:
+      - ALL
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 300m
+    memory: 256Mi
+
+tmpSizeLimit: 64Mi
+
+initContainers: []
+extraVolumes: []
+extraVolumeMounts: []
